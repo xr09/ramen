@@ -1,0 +1,14 @@
+# Binaries
+bin/
+ramen-*
+
+# Go
+vendor/
+*.exe
+*.test
+*.prof
+
+# OS
+.DS_Store
+.idea/
+.vscode/
