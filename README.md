@@ -21,7 +21,7 @@ Download the pre-compiled binaries for your platform from the [Releases](https:/
 
 ## Usage
 
-Specify the amount of memory to consume in Megabytes using the `-size` flag.
+Specify the amount of memory to consume in Megabytes using the `-size` (or also `-s`) flag.
 
 ```bash
 ramen -size 1024 # Consumes 1GB of RAM
