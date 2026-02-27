@@ -1,6 +1,7 @@
 package main
 
 import (
+	"os"
 	"testing"
 )
 
@@ -67,13 +68,44 @@ func TestAllocate(t *testing.T) {
 }
 
 func TestRunInvalidSize(t *testing.T) {
-	err := run("0")
+	err := run("0", 0, 0)
 	if err == nil {
 		t.Error("expected error for size 0, got nil")
 	}
 
-	err = run("-1m")
+	err = run("-1m", 0, 0)
 	if err == nil {
 		t.Error("expected error for size -1m, got nil")
+	}
+}
+
+func TestRunInvalidWaitTime(t *testing.T) {
+	err := run("100m", -1, 0)
+	if err == nil {
+		t.Error("expected error for negative wait time, got nil")
+	}
+}
+
+func TestRunInvalidGrowTime(t *testing.T) {
+	err := run("100m", 0, -1)
+	if err == nil {
+		t.Error("expected error for negative grow time, got nil")
+	}
+}
+
+func TestAllocateGradual(t *testing.T) {
+	// Allocate 2MB over 1 second with no signal interruption
+	sigChan := make(chan os.Signal, 1)
+	mem, err := allocateGradual(2, 1, sigChan)
+	if err != nil {
+		t.Fatalf("allocateGradual() returned error: %v", err)
+	}
+	expectedSize := 2 * 1024 * 1024
+	if len(mem) != expectedSize {
+		t.Errorf("allocateGradual() = slice of size %d, want %d", len(mem), expectedSize)
+	}
+	// Verify pages are touched
+	if mem[0] != 1 {
+		t.Errorf("expected first byte to be 1, got %d", mem[0])
 	}
 }

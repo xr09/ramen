@@ -28,6 +28,24 @@ ramen -size 1024 # Consumes 1GB of RAM
 ramen -s 2g      # Consumes 2GB of RAM
 ```
 
+### Gradual Growth (`-t`)
+
+Grow memory steadily over a period of time instead of allocating it all at once:
+
+```bash
+ramen -s 1g -t 60   # Grow to 1GB over 60 seconds
+ramen -s 500m -t 30  # Grow to 500MB over 30 seconds
+```
+
+### Delayed Start (`-w`)
+
+Wait a number of seconds before starting the memory allocation:
+
+```bash
+ramen -s 1g -w 10       # Wait 10 seconds, then allocate 1GB instantly
+ramen -s 1g -w 10 -t 60 # Wait 10 seconds, then grow to 1GB over 60 seconds
+```
+
 Press `Ctrl+C` at any time to release the memory and exit.
 
 ## Features
