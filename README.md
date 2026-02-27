@@ -25,6 +25,7 @@ Specify the amount of memory to consume in Megabytes using the `-size` flag.
 
 ```bash
 ramen -size 1024 # Consumes 1GB of RAM
+ramen -s 2g      # Consumes 2GB of RAM
 ```
 
 Press `Ctrl+C` at any time to release the memory and exit.
