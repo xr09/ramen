@@ -5,10 +5,13 @@ A simple CLI tool to consume a specified amount of memory. Useful for testing OO
 ## Installation
 
 ### Using Docker
-You can run Ramen directly via Docker without installing anything locally. Images are available on GitHub Container Registry (GHCR) and Docker Hub.
+You can try Ramen directly via Docker without installing anything locally. Images are available on GitHub Container Registry (GHCR).
 
 ```bash
-docker run --rm ghcr.io/xr09/ramen -s 1g
+❯ docker run --rm -ti ghcr.io/xr09/ramen:v0.1.0-beta -w 5 -t 20 -s 1g
+Waiting 5 seconds before starting allocation...
+Gradually allocating 1024 MB over 20 seconds...
+...
 ```
 
 ### From Source
